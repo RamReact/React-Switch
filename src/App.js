@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useState } from 'react';
+import { IoSunnyOutline } from "react-icons/io5";
+import { BsMoonStars } from 'react-icons/bs';
 function App() {
+ const[isDark,setisDark]=useState(true);
+ const toggleisDark=()=>{
+   setisDark(!isDark);
+ }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${isDark ? 'dark':'light'}`}>
+     <div 
+      className={`container ${isDark ? 'dark-con':'light-con'}`} 
+      onClick={toggleisDark}>
+       <div className={`left-container`}>
+        <span>{isDark ? 'Night':'Day'} Mode</span>
+       </div>
+       <div className={`right-container ${isDark ? 'dark':'light'}`}>
+       {isDark ? <BsMoonStars />:<IoSunnyOutline />}
+       </div>
+     </div>
     </div>
   );
 }
